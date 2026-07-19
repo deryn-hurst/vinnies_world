@@ -2,27 +2,22 @@ if((window.innerHeight > window.innerWidth) || (screen.availHeight > screen.avai
     alert("Please use landscape mode for the best experience");
 }
 
-let CORRECT_PASSWORD;
+const CORRECT_PASSWORD = "0652676b73a14c9e162246927f4e74a20ade172ac5623f7f18c76e0130820a62";
 
 if(document.title === "Welcome to Vinnie's World!"){
-    try {
-        const response = await fetch('http://localhost:3000/password');
-        if(!response.ok){
-            throw new Error("Network response was not ok.");
-        }
-        const data = await response.json();
-        CORRECT_PASSWORD = data.password;
-    }
-    catch(error){
-        console.error("Error fetching data:", error);
+    async function checkPassword(password) {
+        const msgUint8 = new TextEncoder().encode(password);
+        const hashBuffer = await crypto.subtle.digest('SHA-256', msgUint8);
+        const hashArray = Array.from(new Uint8Array(hashBuffer));
+        return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
     }
 
-    document.getElementById("enter").addEventListener("click", function () {
-        if(prompt("Enter password") === CORRECT_PASSWORD){
-            location.href = "islands.html";
+    document.getElementById("enter").addEventListener("click", async function () {
+        let pass = prompt("Enter password");
+        //await checkPassword(pass);
+        while(await checkPassword(pass) !== CORRECT_PASSWORD.toString()){
+            pass = prompt("Incorrect password. Re-enter password");
         }
-        else{
-            alert("Incorrect Password");
-        }
+        location.href = "islands.html";
     });
 }
