@@ -1,0 +1,55 @@
+/* welcome */
+body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: fantasy;
+    background-color: #FFB4D7;
+    margin: 0;
+}
+.welcome_heading {
+    display: flex;
+    height: 30%;
+    justify-content: center;
+    align-items: center;;
+}
+
+.welcome_heading > h1 {
+    font-weight: bold;
+    color: #39b54a;
+    font-size: 5vw;
+    margin-bottom: 15%;
+}
+
+.welcome_entrace {
+    display: flex;
+    height: 65%;
+    align-items: center;
+    justify-content: center;
+}
+
+.welcome_rect{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url("welcome_island.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 50vw;
+    height: 50vh;
+}
+
+.welcome_rect > button {
+    background-color: #FFB4D7;
+    border: none;
+    font-size: 2vw;
+    color: #39b54a;
+    width: 30%;
+    height: 15%;
+    font-family: fantasy;
+    border-radius: 25px;
+}
+
+.welcome_rect > button:hover {
+    cursor: pointer;
+    border: #ff7dba 5px solid;
