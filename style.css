@@ -78,3 +78,47 @@ body{
     cursor: pointer;
     opacity: 50%;
 }
+
+/* oto island */
+.transcript_section {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.transcript {
+    overflow-y: scroll;
+    scrollbar-width: thin;
+    scroll-behavior: smooth;
+    width: 95%;
+    height: 60vh;
+    border: #39b54a 2px solid;
+    padding: 0.5% 1.5%;
+    margin-bottom: 2.5%;
+}
+
+.transcript_label {
+    height: 80%;
+    width: 90%;
+    font-weight: bold;
+    font-family: monospace;
+}
+
+.transcript_section > button {
+    background-color: #39b54a;
+    border: none;
+    font-size: 1vw;
+    color: #FFB4D7;
+    width: fit-content;
+    padding: 0.25% 2%;
+    height: 15%;
+    font-family: fantasy;
+    border-radius: 25px;
+}
+
+.transcript_section > button:hover {
+    cursor: pointer;
+    opacity: 50%;
+}

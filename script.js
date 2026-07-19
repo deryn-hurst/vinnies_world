@@ -2,6 +2,15 @@ if((window.innerHeight > window.innerWidth) || (screen.availHeight > screen.avai
     alert("Please use landscape mode for the best experience");
 }
 
+// integrating text to speech
+const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+const SpeechRecognitionEvent = window.SpeechRecognitionEvent || window.webkitSpeechRecognitionEvent;
+
+const recognition = new SpeechRecognition();
+recognition.lang = 'en-US';
+recognition.continuous = true;
+recognition.maxAlternatives = 1;
+
 const CORRECT_PASSWORD = "0652676b73a14c9e162246927f4e74a20ade172ac5623f7f18c76e0130820a62";
 
 if(document.title === "Welcome to Vinnie's World!"){
@@ -19,5 +28,50 @@ if(document.title === "Welcome to Vinnie's World!"){
             pass = prompt("Incorrect password. Re-enter password");
         }
         location.href = "islands.html";
+    });
+}
+
+if(document.title === "Oto Island") {
+    const control_button = document.getElementById('control_transcription');
+    control_button.addEventListener('click', function () {
+        if(control_button.innerHTML === 'START'){
+            control_button.innerHTML = 'STOP';
+
+            recognition.start(); // start listening
+            
+            recognition.onresult = (event) => {
+                const transcript = event.results[event.results.length - 1][0].transcript;
+                document.getElementById("transcript_label").innerHTML += transcript + ".<br><br>";
+            };
+
+            recognition.onerror = (event) => {
+                console.error("Error: ", event.error);
+                control_button.innerHTML = 'START';
+            }
+        }
+        else {
+            control_button.innerHTML = 'START';
+
+            recognition.stop();
+            // pull transcript
+            let transcript = document.getElementById("transcript_label").innerHTML;
+
+            // pull and clean transcript
+            transcript = transcript.replaceAll("<br>", "\n");
+
+            const blob = new Blob([transcript], {type: 'text/plain'});
+            const url = window.URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            
+            link.style.display = 'none';
+            link.href = url;
+            link.download = "oto_island_transcript.txt";
+
+            document.body.appendChild(link);
+            link.click();
+
+            document.body.removeChild(link);
+            window.URL.revokeObjectURL(url);
+            }
     });
 }
