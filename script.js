@@ -8,6 +8,11 @@ screen.orientation.addEventListener("change", function () {
     }
 });
 
+if(!sessionStorage.getItem("authenticated")){
+    alert("You are not authorized to access this page. Redirecting to home.");
+    location.href = "index.html";
+}
+
 
 // integrating text to speech
 const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -30,10 +35,10 @@ if(document.title === "Welcome to Vinnie's World!"){
 
     document.getElementById("enter").addEventListener("click", async function () {
         let pass = prompt("Enter password");
-        //await checkPassword(pass);
         while(await checkPassword(pass) !== CORRECT_PASSWORD.toString()){
             pass = prompt("Incorrect password. Re-enter password");
         }
+        sessionStorage.setItem("authenticated", true);
         location.href = "islands.html";
     });
 }
