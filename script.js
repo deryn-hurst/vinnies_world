@@ -1,20 +1,4 @@
-if ((window.innerHeight > window.innerWidth) || (screen.availHeight > screen.availWidth)) {
-    alert("Please use landscape mode for the best experience");
-    window.body.style.visibility = "hidden";
-}
-else {
-    window.body.style.visibility = "visible";
-}
-
-screen.orientation.addEventListener("change", function () {
-    if((window.innerHeight > window.innerWidth) || (screen.availHeight > screen.availWidth)){
-        alert("Please use landscape mode for the best experience");
-        window.body.style.visibility = "hidden";
-    }
-    else{
-        window.body.style.visibility = "visible";
-    }
-});
+screen.orientation.lock('landscape');
 
 if(!sessionStorage.getItem("authenticated") && document.title !== "Welcome to Vinnie's World!"){
     alert("You are not authorized to access this page. Redirecting to home.");
