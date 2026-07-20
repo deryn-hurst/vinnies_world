@@ -1,4 +1,4 @@
-document.addEventListener("change", function () {
+screen.orientation.addEventListener("change", function () {
     if((window.innerHeight > window.innerWidth) || (screen.availHeight > screen.availWidth)){
         alert("Please use landscape mode for the best experience");
         window.body.style.visibility = "hidden";
