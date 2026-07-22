@@ -149,3 +149,54 @@ body{
     cursor: pointer;
     opacity: 50%;
 }
+
+/* krono island */
+.krono_body {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.current_calendar {
+    border: #39b54a 2px solid;
+    width: 60vw;
+    height: 70vh;
+    margin-right: 10%;
+}
+
+.add_to_planner {
+    border: #39b54a 2px solid;
+    width: 25vw;
+    height: 70vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.add_to_planner > input {
+    height: 5%;
+    font-family: fantasy;
+    width: 90%;
+}
+
+.add_to_planner > textarea {
+    font-family: fantasy;
+    width: 90%;
+    resize: none;
+    height: 50%;
+}
+
+.add_button {
+    background-color: #39b54a;
+    color: #FFB4D7;
+    font-family: fantasy;
+    border: none;
+    border-radius: 10px;
+    padding: 2.5% 5%;
+}
+
+.add_button:hover {
+    cursor: pointer;
+    opacity: 50%;
+}

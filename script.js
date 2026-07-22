@@ -77,3 +77,27 @@ if(document.title === "Oto Island") {
             }
     });
 }
+
+if(document.title === "Krono Island"){
+    document.getElementById("add_to_planner").addEventListener("submit", async function (event) {
+        if(confirm("Add Plan to Calendar?")){
+            const data = {
+                Name: document.getElementById('plan_name').value,
+                Date: document.getElementById('plan_date').value,
+                Description: document.getElementById('plan_description').value
+            };
+
+            fetch('https://api.sheetmonkey.io/form/3JSfUG3oK6YNgn3yZBEcF6', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            }).then((result) => {
+                document.getElementById("add_to_planner").reset();
+                location.href = "krono_island.html";
+            });
+            
+        }
+    });
+}

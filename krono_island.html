@@ -11,7 +11,15 @@
         <h1>KRONO ISLAND</h1>
     </div>
     <div class="krono_body">
-        
+        <div class="current_calendar">
+
+        </div>
+        <form class="add_to_planner" id="add_to_planner" action="https://api.sheetmonkey.io/form/3JSfUG3oK6YNgn3yZBEcFA" method="post">
+            <input class="plan_name" id="plan_name" name="plan_name" placeholder="Plan Title">
+            <input class="plan_date" id="plan_date" name="plan_date" placeholder="Plan Date" type="date">
+            <textarea class="plan_details" id="plan_details" name="plan_details" placeholder="Plan Details (Optional)"></textarea>
+            <input type="submit" class="add_button" id="add_button" value="Add to Planner">
+        </form>
     </div>
 
     <script src="script.js" type="module"></script>
