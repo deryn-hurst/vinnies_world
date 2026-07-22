@@ -24,9 +24,9 @@ if(document.title === "Welcome to Vinnie's World!"){
     }
 
     document.getElementById("enter").addEventListener("click", async function () {
-        let pass = prompt("Enter password");
+        let pass = window.prompt("Enter password");
         while(await checkPassword(pass) !== CORRECT_PASSWORD.toString()){
-            pass = prompt("Incorrect password. Re-enter password");
+            pass = window.prompt("Incorrect password. Re-enter password");
         }
         sessionStorage.setItem("authenticated", true);
         location.href = "islands.html";
