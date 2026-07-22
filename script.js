@@ -79,6 +79,27 @@ if(document.title === "Oto Island") {
 }
 
 if(document.title === "Krono Island"){
+    const doc_id = "1otblKZww2cdZlii2ZEv0Ajwdq6i8qFbnDzZmXPvEuj8";
+    const url = `https://google.com/${doc_id}/export?format=txt`;
+
+    async function fetchGoogleDoc() {
+        try {
+            const response = await fetch(url);
+            if(!response.ok) {
+                throw new Error('Network response failed');
+
+                const textData = await response.text();
+
+                console.log(textData);
+            }
+        }
+        catch (error) {
+            console.error('Error fetching Google Doc:', error);
+        }
+    }
+
+    await fetchGoogleDoc();
+    
     document.getElementById("add_to_planner").addEventListener("submit", async function (event) {
         if(confirm("Add Plan to Calendar?")){
             const data = {
