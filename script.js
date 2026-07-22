@@ -111,7 +111,7 @@ if(document.title === "Krono Island"){
         document.getElementById("current_calendar").innerHTML = plans_info;
     }
     catch (error) {
-        console.error('Error fetching Google Doc:', error);
+        console.error('Error fetching Doc:', error);
     }
     
     document.getElementById("add_to_planner").addEventListener("submit", async function (event) {
