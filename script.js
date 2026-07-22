@@ -1,5 +1,3 @@
-screen.orientation.lock('landscape');
-
 if(!sessionStorage.getItem("authenticated") && document.title !== "Welcome to Vinnie's World!"){
     alert("You are not authorized to access this page. Redirecting to home.");
     location.href = "index.html";
