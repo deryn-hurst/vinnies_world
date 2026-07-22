@@ -57,8 +57,13 @@ body{
 }
 
 /* islands */
+.islands {
+    display: flex;
+    margin: 0;
+}
+
 .oto_island {
-    margin-left: -324%;
+    margin-left: -124%;
     background-image: url("oto_island.png");
     background-size: contain;
     background-repeat: no-repeat;
@@ -71,10 +76,32 @@ body{
     display: inline-flex;
     align-items: flex-start;
     justify-content: center;
-    padding-top: 25%;
+    padding-top: 12.5%;
 }
 
 .oto_island:hover {
+    cursor: pointer;
+    opacity: 50%;
+}
+
+.krono_island {
+    margin-left: 73%;
+    margin-top: 64%;
+    background-image: url("krono_island.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    color: #FFB4D7;
+    font-family: fantasy;
+    border: none;
+    background-color: transparent;
+    width: 10vw;
+    height: 10vw;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.krono_island:hover {
     cursor: pointer;
     opacity: 50%;
 }
