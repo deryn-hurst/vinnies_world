@@ -80,25 +80,39 @@ if(document.title === "Oto Island") {
 
 if(document.title === "Krono Island"){
     const doc_id = "1otblKZww2cdZlii2ZEv0Ajwdq6i8qFbnDzZmXPvEuj8";
-    const url = `https://google.com/${doc_id}/export?format=txt`;
+    const url = `https://docs.google.com/spreadsheets/d/${doc_id}/gviz/tq?tqx=out:csv&sheet=Sheet1`;
 
-    async function fetchGoogleDoc() {
-        try {
-            const response = await fetch(url);
-            if(!response.ok) {
-                throw new Error('Network response failed');
-
-                const textData = await response.text();
-
-                console.log(textData);
-            }
+    try {
+        const response = await fetch(url);
+        if (!response.ok) {
+            throw new Error('Network response failed');
         }
-        catch (error) {
-            console.error('Error fetching Google Doc:', error);
-        }
+        const textData = await response.text();
+
+        let plans_info = "";
+
+        const lines = textData.trim().replaceAll("\"", "").split("\n");
+        
+        const result = lines.slice(1).map(line => {
+            const [name, date, description] = line.split(',');
+            plans_info += 
+            `<div class="plan_div">
+                <div class="plan_info">
+                    <h2>${name}</h2>
+                    <h3>${date}</h3>
+                </div>
+                <div class="plan_description">
+                    <p>${description}</p>
+                </div>
+            </div>
+            `
+        });
+
+        document.getElementById("current_calendar").innerHTML = plans_info;
     }
-
-    await fetchGoogleDoc();
+    catch (error) {
+        console.error('Error fetching Google Doc:', error);
+    }
     
     document.getElementById("add_to_planner").addEventListener("submit", async function (event) {
         if(confirm("Add Plan to Calendar?")){
