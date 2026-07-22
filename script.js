@@ -84,7 +84,6 @@ if(document.title === "Krono Island"){
             const data = {
                 Name: document.getElementById('plan_name').value,
                 Date: document.getElementById('plan_date').value,
-                Time: document.getElementById('plan_time').value,
                 Description: document.getElementById('plan_description').value
             };
 
