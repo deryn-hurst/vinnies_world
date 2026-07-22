@@ -160,13 +160,14 @@ body{
 .current_calendar {
     border: #39b54a 2px solid;
     width: 60vw;
-    height: 70vh;
+    height: 60vh;
     margin-right: 10%;
     display: flex;
     flex-direction: column;
     align-items: center;
     padding-top: 5%;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow-y: scroll;
 }
 
 .plan_div {
@@ -175,6 +176,7 @@ body{
     display: flex;
     flex-direction: column;
     color: #FFB4D7;
+    margin-bottom: 2.5%;
 }
 
 .plan_info {
