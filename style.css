@@ -1,4 +1,4 @@
-/* welcome */
+/* universal */
 body{
     display: flex;
     flex-direction: column;
@@ -8,6 +8,12 @@ body{
     margin: 0;
 }
 
+.island_name:hover{
+    cursor: pointer;
+    opacity: 50%;
+}
+
+/* welcome */
 .welcome_heading {
     display: flex;
     height: 30%;
