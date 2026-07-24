@@ -145,6 +145,12 @@ if(document.title === "Isla Dinero"){
         positions: {} // Format: { TICKER: { shares: X, avgCost: Y } }
     };
 
+    if(sessionStorage.getItem("portfolio_store") !== null){
+        portfolio = JSON.parse(sessionStorage.getItem("portfolio_store"));
+    }
+
+    console.log(portfolio);
+
     // Asset Configuration & Price Simulation baselines
     const assets = {
         AAPL: { price: 150.00, history: [], volatility: 0.0015 },
@@ -241,7 +247,6 @@ if(document.title === "Isla Dinero"){
         }
         updatePositions();
         drawChart();
-        
     }
 
     // --- UI Update & Chart Rendering Functions ---
@@ -290,10 +295,8 @@ if(document.title === "Isla Dinero"){
             portfolioBody.appendChild(row);
         }
         
-        if(portfolioBody.innerHTML !== "") {
-            sessionStorage.setItem("portfolio", portfolioBody.innerHTML);
-        }
-        
+        sessionStorage.setItem("portfolio", portfolioBody.innerHTML);   
+        sessionStorage.setItem("portfolio_store", JSON.stringify(portfolio)); 
     }
 
     // Manual Canvas Line Chart Generation
@@ -352,6 +355,7 @@ if(document.title === "Isla Dinero"){
     document.getElementById("btn-reset").addEventListener("click", function(){
         if(confirm("Reset Portfolio?")){
             sessionStorage.removeItem("portfolio");
+            sessionStorage.removeItem("portfolio_store");
             location.reload();
         }
     });
