@@ -196,7 +196,7 @@ if(document.title === "Isla Dinero"){
                 assets[key].history.shift();
             }
         }
-        updateUI();
+        drawChart();
     }
 
     // --- Order Execution Engine ---
@@ -239,12 +239,13 @@ if(document.title === "Isla Dinero"){
                 delete portfolio.positions[activeAsset];
             }
         }
-        updateUI();
         updatePositions();
+        drawChart();
+        
     }
 
     // --- UI Update & Chart Rendering Functions ---
-    function updateUI() {
+    function updatePositions() {
         // 1. Current Asset Readouts
         const livePrice = assets[activeAsset].price;
         priceDisplay.textContent = `$${livePrice.toFixed(2)}`;
@@ -263,14 +264,14 @@ if(document.title === "Isla Dinero"){
 
         returnDisplay.textContent = `${totalReturnPct >= 0 ? '+' : ''}${totalReturnPct.toFixed(2)}%`;
         returnDisplay.className = `stat-val ${totalReturnPct >= 0 ? 'up' : 'down'}`;
-        
 
-        drawChart();
-    }
+        // 3. Render Positions Table
+        if(sessionStorage.getItem("portfolio") !== null){
+            let display = sessionStorage.getItem("portfolio");
+            display = display.substring(display.lastIndexOf("</tr>"));
+            portfolioBody.innerHTML = display;
+        }
 
-    function updatePositions() {
-        // Render Positions Table
-        portfolioBody.innerHTML = sessionStorage.getItem("portfolio");
         for (let key in portfolio.positions) {
             const pos = portfolio.positions[key];
             const curPrice = assets[key].price;
@@ -287,9 +288,12 @@ if(document.title === "Isla Dinero"){
             <td class="${pnl >= 0 ? 'up' : 'down'}">$${pnl.toFixed(2)}</td>
         `;
             portfolioBody.appendChild(row);
-            sessionStorage.setItem("portfolio", portfolioBody.innerHTML);
-            console.log(sessionStorage.getItem("portfolio"));
         }
+        
+        if(portfolioBody.innerHTML !== "") {
+            sessionStorage.setItem("portfolio", portfolioBody.innerHTML);
+        }
+        
     }
 
     // Manual Canvas Line Chart Generation
@@ -338,7 +342,7 @@ if(document.title === "Isla Dinero"){
     // --- Interactive Event Listeners ---
     assetSelect.addEventListener('change', (e) => {
         activeAsset = e.target.value;
-        updateUI();
+        drawChart();
     });
 
     btnBuy.addEventListener('click', () => executeTrade('BUY'));
@@ -354,7 +358,7 @@ if(document.title === "Isla Dinero"){
 
     // --- Initialization Execution ---
     initPrices();
-    updateUI();
+    drawChart();
     updatePositions();
     setInterval(updateMarketPrices, 1000);
 }
