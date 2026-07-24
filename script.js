@@ -240,6 +240,7 @@ if(document.title === "Isla Dinero"){
             }
         }
         updateUI();
+        updatePositions();
     }
 
     // --- UI Update & Chart Rendering Functions ---
@@ -262,9 +263,14 @@ if(document.title === "Isla Dinero"){
 
         returnDisplay.textContent = `${totalReturnPct >= 0 ? '+' : ''}${totalReturnPct.toFixed(2)}%`;
         returnDisplay.className = `stat-val ${totalReturnPct >= 0 ? 'up' : 'down'}`;
+        
 
-        // 3. Render Positions Table
-        portfolioBody.innerHTML = '';
+        drawChart();
+    }
+
+    function updatePositions() {
+        // Render Positions Table
+        portfolioBody.innerHTML = sessionStorage.getItem("portfolio");
         for (let key in portfolio.positions) {
             const pos = portfolio.positions[key];
             const curPrice = assets[key].price;
@@ -281,9 +287,9 @@ if(document.title === "Isla Dinero"){
             <td class="${pnl >= 0 ? 'up' : 'down'}">$${pnl.toFixed(2)}</td>
         `;
             portfolioBody.appendChild(row);
+            sessionStorage.setItem("portfolio", portfolioBody.innerHTML);
+            console.log(sessionStorage.getItem("portfolio"));
         }
-
-        drawChart();
     }
 
     // Manual Canvas Line Chart Generation
@@ -339,8 +345,16 @@ if(document.title === "Isla Dinero"){
     btnSell.addEventListener('click', () => executeTrade('SELL'));
     window.addEventListener('resize', drawChart);
 
+    document.getElementById("btn-reset").addEventListener("click", function(){
+        if(confirm("Reset Portfolio?")){
+            sessionStorage.removeItem("portfolio");
+            location.reload();
+        }
+    });
+
     // --- Initialization Execution ---
     initPrices();
     updateUI();
+    updatePositions();
     setInterval(updateMarketPrices, 1000);
 }

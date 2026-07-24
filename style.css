@@ -426,6 +426,10 @@ canvas {
 
 .btn-buy { background-color: var(--green); color: white; }
 .btn-sell { background-color: var(--pink); color: white; }
+.btn-reset {
+    background-color: #ff0000;
+    color: #fff;
+}
 
 /* Portfolio Table */
 .portfolio-table {
