@@ -202,6 +202,7 @@ if(document.title === "Isla Dinero"){
                 assets[key].history.shift();
             }
         }
+        priceUpdate();
         drawChart();
     }
 
@@ -246,11 +247,11 @@ if(document.title === "Isla Dinero"){
             }
         }
         updatePositions();
+        priceUpdate();
         drawChart();
     }
 
-    // --- UI Update & Chart Rendering Functions ---
-    function updatePositions() {
+    function priceUpdate(){
         // 1. Current Asset Readouts
         const livePrice = assets[activeAsset].price;
         priceDisplay.textContent = `$${livePrice.toFixed(2)}`;
@@ -269,6 +270,10 @@ if(document.title === "Isla Dinero"){
 
         returnDisplay.textContent = `${totalReturnPct >= 0 ? '+' : ''}${totalReturnPct.toFixed(2)}%`;
         returnDisplay.className = `stat-val ${totalReturnPct >= 0 ? 'up' : 'down'}`;
+    }
+
+    // --- UI Update & Chart Rendering Functions ---
+    function updatePositions() {
 
         // 3. Render Positions Table
         if(sessionStorage.getItem("portfolio") !== null){
@@ -345,6 +350,7 @@ if(document.title === "Isla Dinero"){
     // --- Interactive Event Listeners ---
     assetSelect.addEventListener('change', (e) => {
         activeAsset = e.target.value;
+        priceUpdate();
         drawChart();
     });
 
@@ -362,6 +368,7 @@ if(document.title === "Isla Dinero"){
 
     // --- Initialization Execution ---
     initPrices();
+    priceUpdate();
     drawChart();
     updatePositions();
     setInterval(updateMarketPrices, 1000);
