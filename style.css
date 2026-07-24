@@ -269,3 +269,190 @@ body{
     cursor: pointer;
     opacity: 50%;
 }
+
+/* isla dinero */
+:root {
+    --bg-color: #0f172a;
+    --card-bg: #1e293b;
+    --text-color: #f8fafc;
+    --text-muted: #ffb4d7;
+    --green: #39b54a;
+    --pink: #ffb4d7;
+    --border: #334155;
+}
+
+.trading_section {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 20px;
+    height: 70%;
+}
+
+#clock {
+    color: var(--text-muted);
+}
+
+.card {
+    background-color: var(--card-bg);
+    border-radius: 8px;
+    padding: 20px;
+    border: 1px solid var(--border);
+}
+
+.card > h2 {
+    color: #FFB4D7;
+}
+
+/* Chart Area */
+.main-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+#chart-title {
+    margin-bottom: 10px;
+}
+
+.chart-container {
+    height: 350px;
+    position: relative;
+}
+
+canvas {
+    width: 100%;
+    height: 100%;
+}
+
+.section-title {
+    margin-bottom: 10px;
+}
+
+/* Stats Grid */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
+
+.stat-box {
+    text-align: center;
+}
+
+.stat-label {
+    color: var(--text-muted);
+}
+
+.stat-val {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-top: 5px;
+    color: #fff;
+}
+
+/* Trading Panel */
+.side-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.divider {
+    border-color: var(--border);
+    margin: 15px 0;
+}
+
+.ticker-select {
+    width: 100%;
+    padding: 10px;
+    background: var(--bg-color);
+    color: var(--text-color);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+}
+
+.price-display {
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 15px;
+    color: #fff;
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+.input-group > label {
+    display: block;
+    color: var(--text-muted);
+    margin-bottom: 5px;
+    font-size: 0.9rem;
+}
+
+.input-group > input {
+    width: 95%;
+    padding: 10px;
+    background: var(--bg-color);
+    color: var(--text-color);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.btn-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.btn-group > button {
+    padding: 12px;
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: opacity 0.2s;
+}
+
+.btn-group > button:hover {
+    opacity: 0.9;
+}
+
+.btn-buy { background-color: var(--green); color: white; }
+.btn-sell { background-color: var(--pink); color: white; }
+
+/* Portfolio Table */
+.portfolio-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.portfolio-table th, .portfolio-table td {
+    text-align: left;
+    padding: 10px;
+    border-bottom: 1px solid var(--border);
+}
+
+.portfolio-table th {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+.portfolio-table td:first-child {
+    font-weight: bold;
+}
+
+.portfolio-body > tr > td {
+    color: #fff;
+}
+
+/* Utility classes */
+.up { color: var(--green); }
+.down { color: var(--pink); }

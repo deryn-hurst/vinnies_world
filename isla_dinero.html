@@ -10,8 +10,82 @@
     <div class="welcome_heading">
         <h1 class="island_name" onclick="location.href='islands.html'">ISLA DINERO</h1>
     </div>
-    <div class="trading_section">
-        
+    <div class="trading_section">    
+        <div class="main-panel">
+            <!-- Live Dashboard Statistics -->
+            <div class="card stats-grid">
+                <div class="stat-box">
+                    <div class="stat-label">Net Worth</div>
+                    <div id="net-worth" class="stat-val">$100,000.00</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Cash Balance</div>
+                    <div id="cash" class="stat-val">$100,000.00</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Total Return</div>
+                    <div id="total-return" class="stat-val">0.00%</div>
+                </div>
+            </div>
+    
+            <!-- Price Chart Canvas -->
+            <div class="card">
+                <h2 id="chart-title">AAPL Live Price</h2>
+                <div class="chart-container">
+                    <canvas id="priceChart"></canvas>
+                </div>
+            </div>
+    
+            <!-- Open Positions -->
+        </div>
+    
+        <!-- Right Side: Order Entry -->
+        <div class="side-panel">
+            <div class="card">
+                <h2>Place Order</h2>
+                <hr class="divider">
+    
+                <select id="asset-select" class="ticker-select">
+                    <option value="AAPL">AAPL (Apple Inc.)</option>
+                    <option value="TSLA">TSLA (Tesla Motors)</option>
+                    <option value="BTC">BTC (Bitcoin)</option>
+                    <option value="GOLD">GOLD (Gold Spot)</option>
+                </select>
+    
+                <div id="current-price-display" class="price-display">$150.00</div>
+    
+                <div class="input-group">
+                    <label for="shares-input">Number of Shares / Units</label>
+                    <input type="number" id="shares-input" min="1" step="1" value="10">
+                </div>
+    
+                <div class="btn-group">
+                    <button id="btn-buy" class="btn-buy">BUY</button>
+                    <button id="btn-sell" class="btn-sell">SELL</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2 class="section-title">Your Positions</h2>
+                <table class="portfolio-table">
+                    <thead>
+                        <tr>
+                            <th>Asset</th>
+                            <th>Shares</th>
+                            <th>Avg Cost</th>
+                            <th>Current Price</th>
+                            <th>Total Value</th>
+                            <th>Profit/Loss</th>
+                        </tr>
+                    </thead>
+                    <tbody class="portfolio-body" id="portfolio-body">
+                        <!-- Dynamic Rows Go Here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
     </div>
 
     <script src="script.js" type="module"></script>
