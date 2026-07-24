@@ -69,7 +69,8 @@ body{
 }
 
 .oto_island {
-    margin-left: -124%;
+    position: absolute;
+    margin-left: -34%;
     background-image: url("oto_island.png");
     background-size: contain;
     background-repeat: no-repeat;
@@ -82,7 +83,7 @@ body{
     display: inline-flex;
     align-items: flex-start;
     justify-content: center;
-    padding-top: 12.5%;
+    padding-top: 2.5%;
 }
 
 .oto_island:hover {
@@ -91,8 +92,9 @@ body{
 }
 
 .krono_island {
-    margin-left: 73%;
-    margin-top: 64%;
+    position: absolute;
+    margin-left: 3%;
+    margin-top: 4%;
     background-image: url("krono_island.png");
     background-size: contain;
     background-repeat: no-repeat;
@@ -108,6 +110,29 @@ body{
 }
 
 .krono_island:hover {
+    cursor: pointer;
+    opacity: 50%;
+}
+
+.isla_dinero {
+    position: absolute;
+    margin-left: -19%;
+    margin-top: 20%;
+    background-image: url("isla_dinero.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    color: #FFB4D7;
+    font-family: fantasy;
+    border: none;
+    background-color: transparent;
+    width: 5vw;
+    height: 10vw;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.isla_dinero:hover {
     cursor: pointer;
     opacity: 50%;
 }
