@@ -429,6 +429,7 @@ canvas {
 .btn-reset {
     background-color: #ff0000;
     color: #fff;
+    grid-column: span 2;
 }
 
 /* Portfolio Table */
