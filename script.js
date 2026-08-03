@@ -396,7 +396,6 @@ if(document.title === "Aspho Island"){
         for (let i = 0; i < checks.length; i++) {
             checks[i].addEventListener("click", function () {
                 if (checks[i].checked) {
-                    console.log(items[i].value);
                     items[i].style.textDecoration = "line-through";
                 }
                 else {
