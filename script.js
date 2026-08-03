@@ -381,7 +381,7 @@ if(document.title === "Aspho Island"){
     let list_items = [];
 
     document.addEventListener("keydown", function(event) {
-        if(event.key === "Enter" || event.keyCode === 13){
+        if(event.key === "Enter" || event.keyCode === 13 || event.code === "Enter"){
             section.innerHTML += 
                 `<div class="checklist_item">
                     <input type="checkbox" class="checklist_checkbox">
