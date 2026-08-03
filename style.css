@@ -497,3 +497,35 @@ canvas {
     padding: 0.5% 1.5%;
     margin-bottom: 2.5%;
 }
+
+.checklist_item {
+    display: flex;
+    flex-direction: row;
+    align-items: end;
+    height: 7.5%;
+    margin-top: 2.5%;
+}
+
+.checklist_checkbox {
+    width: 10%;
+    height: 100%;
+    accent-color: #39b54a;
+}
+
+.checklist_checkbox:hover {
+    cursor: pointer;
+}
+
+.checklist_input {
+    border: #39b54a 2px solid;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    color: #39b54a;
+    background-color: #ffb4d7;
+    width: 80%;
+    height: 100%;
+    font-size: 100%;
+    font-family: fantasy;
+    outline: none;
+}

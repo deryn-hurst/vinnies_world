@@ -373,3 +373,44 @@ if(document.title === "Isla Dinero"){
     updatePositions();
     setInterval(updateMarketPrices, 1000);
 }
+
+if(document.title === "Aspho Island"){
+    const items = document.getElementsByClassName("checklist_input");
+    const checks = document.getElementsByClassName("checklist_checkbox");
+    const section = document.getElementById("checklist_section");
+    let list_items = [];
+
+    document.addEventListener("keydown", function(event) {
+        if(event.key === "Enter"){
+            section.innerHTML += 
+                `<div class="checklist_item">
+                    <input type="checkbox" class="checklist_checkbox">
+                    <input type="text" class="checklist_input">
+                </div>`;
+            list_items.push("");
+
+            console.log(list_items);
+            for(let i = 0; i < list_items.length; i++){
+                items[i].value = list_items[i];
+            }
+        }
+        //else {
+            for (let i = 0; i < checks.length; i++) {
+                checks[i].addEventListener("click", function () {
+                    if (checks[i].checked) {
+                        console.log(items[i].value);
+                        items[i].style.textDecoration = "line-through";
+                    }
+                    else {
+                        items[i].style.textDecoration = "none";
+                    }
+
+                });
+
+                items[i].addEventListener("change", function () {
+                    list_items[i] = items[i].value;
+                });
+            }
+        //}
+    });
+}
