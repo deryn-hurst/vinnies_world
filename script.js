@@ -389,7 +389,6 @@ if(document.title === "Aspho Island"){
                 </div>`;
             list_items.push("");
 
-            console.log(list_items);
             for(let i = 0; i < list_items.length; i++){
                 items[i].value = list_items[i];
             }
