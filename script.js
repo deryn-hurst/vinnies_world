@@ -382,16 +382,23 @@ if(document.title === "Aspho Island"){
 
     document.addEventListener("keydown", function(event) {
         if(event.key === "Enter" || event.keyCode === 13 || event.code === "Enter"){
-            section.innerHTML += 
-                `<div class="checklist_item">
-                    <input type="checkbox" class="checklist_checkbox">
+            event.preventDefault();
+            
+            const new_item = document.createElement("div");
+            new_item.className = "checklist_item";
+            new_item.innerHTML = 
+                `   <input type="checkbox" class="checklist_checkbox">
                     <input type="text" class="checklist_input">
-                </div>`;
+                `;
+            section.appendChild(new_item);
             list_items.push("");
+
+            new_item.querySelector(".checklist_input").focus();
 
             for(let i = 0; i < list_items.length; i++){
                 items[i].value = list_items[i];
             }
+            
         }
         for (let i = 0; i < checks.length; i++) {
             checks[i].addEventListener("click", function () {
