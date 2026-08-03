@@ -149,8 +149,6 @@ if(document.title === "Isla Dinero"){
         portfolio = JSON.parse(sessionStorage.getItem("portfolio_store"));
     }
 
-    console.log(portfolio);
-
     // Asset Configuration & Price Simulation baselines
     const assets = {
         AAPL: { price: 150.00, history: [], volatility: 0.0015 },
@@ -379,11 +377,68 @@ if(document.title === "Aspho Island"){
     const checks = document.getElementsByClassName("checklist_checkbox");
     const section = document.getElementById("checklist_section");
     let list_items = [];
+    let completed_items = [];
 
-    document.addEventListener("keydown", function(event) {
+    async function load_data(){
+        const response = await fetch("https://api.npoint.io/8b055ae4538e8b067599");
+        const data = await response.json();
+        if(data !== null){
+            section.innerHTML = data.structure;
+            list_items = data.items;
+            completed_items = data.completed;
+        }
+
+        for (let i = 0; i < list_items.length; i++) {
+            items[i].value = list_items[i];
+        }
+
+        completed_items.forEach(element => {
+            checks[element].checked = true;
+            items[element].style.textDecoration = "line-through";
+        });
+
+        for (let i = 0; i < list_items.length; i++) {
+            checks[i].addEventListener("click", async function () {
+                if (checks[i].checked) {
+                    items[i].style.textDecoration = "line-through";
+                    if(!completed_items.includes(i)){
+                        completed_items.push(i);
+                    }
+                }
+                else {
+                    items[i].style.textDecoration = "none";
+                    completed_items.splice(completed_items.indexOf(i),1);
+                }
+
+                await push_data(section.innerHTML, list_items, completed_items);
+            });
+
+            items[i].addEventListener("change", function () {
+                list_items[i] = items[i].value;
+            });
+        }
+    }
+
+    async function push_data(structure, items, completed){
+        const response = await fetch("https://api.npoint.io/8b055ae4538e8b067599", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                "structure" : structure,
+                "items" : items,
+                "completed" : completed
+            }),
+        });
+    }
+
+    load_data();
+
+    document.addEventListener("keydown", async function(event) {
         if(event.key === "Enter" || event.keyCode === 13 || event.code === "Enter"){
             event.preventDefault();
-            
+
             const new_item = document.createElement("div");
             new_item.className = "checklist_item";
             new_item.innerHTML = 
@@ -398,17 +453,37 @@ if(document.title === "Aspho Island"){
             for(let i = 0; i < list_items.length; i++){
                 items[i].value = list_items[i];
             }
+
+            await push_data(section.innerHTML, list_items, completed_items);
             
         }
+        if(event.key === "Backspace" || event.code === "Backspace"){
+            for(let i = 0; i < items.length; i++){
+                if (items[i].value === "" && items.length > 1) {
+                    list_items.splice(i, 1);
+                    completed_items.splice(completed_items.indexOf(i), 1);
+                    section.removeChild(section.children[i]);
+                }
+            }
+            
+            await push_data(section.innerHTML, list_items, completed_items);
+        }
+        
+
         for (let i = 0; i < checks.length; i++) {
-            checks[i].addEventListener("click", function () {
+            checks[i].addEventListener("click", async function () {
                 if (checks[i].checked) {
                     items[i].style.textDecoration = "line-through";
+                    if(!completed_items.includes(i)){
+                        completed_items.push(i);
+                    }
                 }
                 else {
                     items[i].style.textDecoration = "none";
+                    completed_items.splice(completed_items.indexOf(i), 1);
                 }
 
+                await push_data(section.innerHTML, list_items, completed_items);
             });
 
             items[i].addEventListener("change", function () {
