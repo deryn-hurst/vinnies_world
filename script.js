@@ -394,23 +394,21 @@ if(document.title === "Aspho Island"){
                 items[i].value = list_items[i];
             }
         }
-        //else {
-            for (let i = 0; i < checks.length; i++) {
-                checks[i].addEventListener("click", function () {
-                    if (checks[i].checked) {
-                        console.log(items[i].value);
-                        items[i].style.textDecoration = "line-through";
-                    }
-                    else {
-                        items[i].style.textDecoration = "none";
-                    }
+        for (let i = 0; i < checks.length; i++) {
+            checks[i].addEventListener("click", function () {
+                if (checks[i].checked) {
+                    console.log(items[i].value);
+                    items[i].style.textDecoration = "line-through";
+                }
+                else {
+                    items[i].style.textDecoration = "none";
+                }
 
-                });
+            });
 
-                items[i].addEventListener("change", function () {
-                    list_items[i] = items[i].value;
-                });
-            }
-        //}
+            items[i].addEventListener("change", function () {
+                list_items[i] = items[i].value;
+            });
+        }
     });
 }
