@@ -382,13 +382,18 @@ if(document.title === "Aspho Island"){
     async function load_data(){
         const response = await fetch("https://api.npoint.io/8b055ae4538e8b067599");
         const data = await response.json();
+
         if(data !== null){
             section.innerHTML = data.structure;
             list_items = data.items;
             completed_items = data.completed;
         }
+        else{
+            list_items = [];
+            completed_items = [];
+        }
 
-        for (let i = 0; i < list_items.length; i++) {
+        for (let i = 0; i < items.length; i++) {
             items[i].value = list_items[i];
         }
 
@@ -397,7 +402,7 @@ if(document.title === "Aspho Island"){
             items[element].style.textDecoration = "line-through";
         });
 
-        for (let i = 0; i < list_items.length; i++) {
+        for (let i = 0; i < checks.length; i++) {
             checks[i].addEventListener("click", async function () {
                 if (checks[i].checked) {
                     items[i].style.textDecoration = "line-through";
@@ -450,7 +455,7 @@ if(document.title === "Aspho Island"){
 
             new_item.querySelector(".checklist_input").focus();
 
-            for(let i = 0; i < list_items.length; i++){
+            for(let i = 0; i < items.length; i++){
                 items[i].value = list_items[i];
             }
 
